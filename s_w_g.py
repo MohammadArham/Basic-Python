@@ -66,6 +66,9 @@ while(wil<=10):
     wil+=1
 print(f"\n\n##### Game Summery #####")
 print(f"{nam1} you wins {z} times and you loose {y} times")
+print(f"And {x} times match was draw")
+print(f"Your score is: {z*10} out of 100. and,")
+print(f"Computer score is: {y*10} out of 100")
 if z>y:
     print(f"Congratulations {nam1} you are winner")
 elif z<y:
