@@ -12,3 +12,6 @@ python_file.txt
 recursive_func.py
 try_except.py
 enumerate.py
+claddfunc.py
+classinit.py
+multilevelclass.py
