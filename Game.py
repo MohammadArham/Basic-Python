@@ -8,23 +8,50 @@ At the end show the no.
 Game Over
 """
 import random
-lo=1
-n=random.randint(0,99)
-while(lo<=10):
-    a=int(input("Guess the number:"))
-    if a<n:
-        print(a," is smaller, please guess a greater one")
-    elif a>n:
-        print(a," is greater, please guess a smaller one")
+ply_chns=1
+rndm_nmbr=random.randint(0,99)
+print("    $$$$$$ Mohammad  Arham $$$$$$")
+print("          Number Guess Game")
+
+while(ply_chns<=10):
+    print(f"\n         ##### Turn  {ply_chns} #####")
+    usr_guess_input=(input("   Guess the number:"))
+    try:
+        usr_guess=int(usr_guess_input)
+        if usr_guess<rndm_nmbr:
+            if ply_chns<10:
+                print(f"   {usr_guess} is smaller, please guess a greater one")
+            else:
+                pass
+        elif usr_guess>rndm_nmbr:
+            if ply_chns<10:
+                print(f"   {usr_guess} is greater, please guess a smaller one")
+            else:
+                pass
+        else:
+            print("         ****** HURREY *****")
+            break
+        try:
+            lft_chns_logic=ply_chns;
+            lft_chns=10-lft_chns_logic;
+            if ply_chns<10:
+                if ply_chns==9:
+                    print(f"   you left {lft_chns} chance")
+                else:
+                    print(f"   you left {lft_chns} chances")
+            else:
+                pass
+        except Exception as f:
+            pass
+    except Exception as input_error:
+        print("   OOPS!!!")
+    ply_chns+=1
+    
+if ply_chns<=10:
+    if ply_chns==1:
+        print(f"   You complete in {ply_chns} chance")
     else:
-        print("You choosed a correct one")
-        break
-    z=lo;
-    y=10-z;
-    print("you left",y,"chances")
-    lo=lo+1
-if z<10:
-    print("congrats, you complete in",z+1,"chances")
+        print(f"   You complete in {ply_chns} chances")
 else:
-    print("You loose, ",n," is the correct answer")
-print("Game Over")
+    print(f"You loose, {rndm_nmbr} is the correct answer")
+print("   Game Over")
