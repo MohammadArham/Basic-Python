@@ -1,78 +1,75 @@
 # Snake Water Gun
 import random
+
+def speech(massege):
+    from win32com.client import Dispatch
+    speak=Dispatch("SAPI.SpVoice")
+    speak.Speak(massege)
+    
+def choice(chois):
+    if chois=="s":
+        return "snake"
+    elif chois=="w":
+        return "water" 
+    elif chois=="g":
+        return "gun"
+    
 print("   $$$$$$ Mohammad Arham $$$$$$")
+speech("Presented By MOHAMMAD ARHAM")
 print("      (Snake,Water,Gun) Game")
-nam=input("   Enter Your Name:")
-nam1=nam.upper()
-print(f"## Welcome {nam1} to (Snake, Water, Gun) Game ##")
+speech("Welcome to snake water gun game")
+speech("Enter your name")
+player_name=input("   Enter Your Name:").upper()
+print(f"## Welcome {player_name} to (Snake, Water, Gun) Game ##")
 print("   lets Play")
-wil=1
-x=0
-y=0
-z=0
-while(wil<=10):
-    ran=random.choice(["s","w","g"])
-    print(f"\n    ****** Turn - {wil} ******")
-    print(f"{nam1} Please choose: (s,w,g) for (snake,water,gun)")
-    inp1=input("  Enter your choice:")
-    inp1=inp1.lower()
-    if ran=="s":  # code for snake
-        if ran==inp1:
+speech(f"let's play {player_name}")
+game_turn=1
+draw_count=0
+loose_count=0
+win_count=0
+while(game_turn<=10):
+    cmputr_chois=random.choice(["s","w","g"])
+    cmputr_choose=choice(cmputr_chois)
+    print(f"\n    ****** Turn - {game_turn} ******")
+    speech(f"turn {game_turn}")
+    print(f"{player_name} Please choose: (s,w,g) for (snake,water,gun)")
+    speech("choose")
+    user_choice=input("  Enter your choice:").lower()
+    user_choose=choice(user_choice)
+    if user_choice=="s" or user_choice=="w" or user_choice=="g":  # code for snake
+        if cmputr_chois==user_choice:
             print("  Match draw")
-            print(f"Computer was choosed snake, and {nam} you also choosed snake")
-            x+=1
-        elif inp1=="w":
-            print(f"  You Loose {nam}")
-            print(f"Computer was choosed snake, and {nam} you choosed water")
-            y+=1
-        elif inp1=="g":
-            print(f"  You Win {nam}")
-            print(f"Computer was choosed snake, and {nam} you choosed gun")
-            z+=1
-        else:
-            print(f" ohoo! {nam1} wrong input read carfully")
-    elif ran=="w":  # code for water
-        if ran==inp1:
-            print("  Match draw")
-            print(f"Computer was choosed water, and {nam} you also choosed water")
-            x+=1
-        elif inp1=="g":
-            print(f"  You Loose {nam}")
-            print(f"Computer was choosed water, and {nam} you choosed gun")
-            y+=1
-        elif inp1=="s":
-            print(f"  You Win {nam}")
-            print(f"Computer was choosed water, and {nam} you choosed snake")
-            z+=1
-        else:
-            print(f" ohoo! {nam1} wrong input read carfully")
-    elif ran=="g":  # code for gun
-        if ran==inp1:
-            print("  Match draw")
-            print(f"Computer was choosed gun, and {nam} you also choosed gun")
-            x+=1
-        elif inp1=="s":
-            print(f"  You Loose {nam}")
-            print(f"Computer was choosed gun, and {nam} you choosed snake")
-            y+=1
-        elif inp1=="w":
-            print(f"  You Win {nam}")
-            print(f"Computer was choosed gun, and {nam} you choosed water")
-            z+=1
-        else:
-            print(f" ohoo! {nam1} wrong input read carfully")
-            break
-    if wil<=9:
-        print(f"  {10-wil}  chances left")
-    wil+=1
+            speech("Draw")
+            print(f"Computer was choosed {cmputr_choose}, and {player_name} you also choosed {user_choose}")
+            draw_count+=1
+        elif cmputr_chois=="s" and user_choice=="w" or cmputr_chois=="w" and user_choice=="g" or cmputr_chois=="g" and user_choice=="s":
+            print(f"  You Loose {player_name}")
+            speech("you loose")
+            print(f"Computer was choosed {cmputr_choose}, and {player_name} you choosed {user_choose}")
+            loose_count+=1
+        elif cmputr_chois=="s" and user_choice=="g" or cmputr_chois=="w" and user_choice=="s" or cmputr_chois=="g" and user_choice=="w":
+            print(f"  You Win {player_name}")
+            speech("you win")
+            print(f"Computer was choosed {cmputr_choose}, and {player_name} you choosed {user_choose}")
+            win_count+=1         
+    else:
+        print(f" OOPS! {player_name} you entered wrong input, read carfully.")
+        speech("oops, careful")
+    if game_turn<=9:
+        print(f"  {10-game_turn}  chances left")
+    game_turn+=1
 print(f"\n\n        ##### Game Summery #####")
-print(f"{nam1} you wins {z} times and you loose {y} times")
-print(f"       And {x} times match was draw")
-print(f"    Your score is: {z*10} out of 100. and,")
-print(f"     Computer score is: {y*10} out of 100")
-if z>y:
-    print(f"     ***** HURREY *****\n      {nam1} you are the winner")
-elif z<y:
+print(f"{player_name} you wins {win_count} times and you loose {loose_count} times")
+print(f"       And {draw_count} times match was draw")
+print(f"    Your score is: {win_count*10} out of 100. and,")
+print(f"     Computer score is: {loose_count*10} out of 100")
+if win_count>loose_count:
+    print(f"           ***** HURREY *****")
+    speech("Congratulations")
+    print(f"        {player_name} you are the winner")
+elif win_count<loose_count:
     print("      Oops, you loose the game")
 else:
-    print("Draw Match")
+    print("      Draw Match")
+print("      Game Over")
+speech("game over")    
