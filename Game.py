@@ -1,16 +1,7 @@
-"""
-Taking any number from user in can be (+ve)integer
-no. of guesses
-print no. of guesses left
-No of guesses he took to finish
-print the no. choosen by user is greater or smaller
-At the end show the no.
-Game Over
-"""
-from win32com.client import Dispatch
-speak=Dispatch("SAPI.SpVoice")
 import random
 def spk(massege):
+    from win32com.client import Dispatch
+    speak=Dispatch("SAPI.SpVoice")
     speak.Speak(massege)
 ply_chns=1
 rndm_nmbr=random.randint(0,99)
